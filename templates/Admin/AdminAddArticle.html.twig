@@ -1,0 +1,16 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block main %}
+    {% for message in app.flashes('success') %}
+<div class="flash-success">
+    {{ message }}
+</div>
+    {% endfor %}
+
+<div class="login">
+    <div class="form login-form">
+        {% form_theme articleForm 'bootstrap_4_layout.html.twig' %}
+        {{ form(articleForm) }}
+        </div>
+    </div>
+{% endblock %}

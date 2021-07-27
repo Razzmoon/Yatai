@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="login">
+    <div class="login-form ">
+        {% form_theme userForm 'bootstrap_4_layout.html.twig' %}
+        {{ form(userForm) }}
+    </div>
+    </div>
+{% endblock %}

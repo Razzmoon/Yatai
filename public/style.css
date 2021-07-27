@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: "yatai";
+    src: url(font/tempus-sans-itc.ttf);
+}
+@font-face {
+    font-family: "cream";
+    src: url(font/Louis.ttf);
+}
+li {
+    list-style-type: none;
+}
+.w-90 {
+    width: 90%;
+}
+.logo {
+    width: 100px;
+    height: auto;
+}
+.reseaux {
+    width: 30px;
+}
+/*Header*/
+nav {
+    background-color: #9f1300;
+    height: 100px;
+}
+#panier {
+    width: 50px;
+}
+#connexion {
+    width: 50px;
+}
+.titre1 {
+    text-decoration: none;
+}
+.Yatai{
+    color: white;
+    font-family: "yatai";
+
+}
+#acheter {
+    background-color: #9ba987;
+    color: white;
+    border: none;
+    box-shadow: 2px 2px 2px black;
+    bottom: 100px;
+    left: 100px;
+}
+.carousel-item {
+    height: 600px;
+}
+#test {
+    width: 90%;
+}
+/*main*/
+main > nav > ul > li {
+    color: white;
+    font-family: "cream";
+}
+.top-sell {
+    border-radius: 40px;
+    width: 300px;
+}
+/*footer*/
+footer {
+    background-color: #9f1300;
+    height: 100px;
+}
+
+.login{
+    width: 60%;
+    height: calc(100vh - 200px);
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.login-form{
+    width: 100%;
+}
+.flash-success {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: white;
+    background-color: lightgreen;
+    font-size: 20px;
+}
+.logout{
+    text-decoration: none;
+    color: black;
+    font-family: "cream";
+    font-size:20px;
+}
+.article{
+    width: 100%;
+    height: 100%;
+    border-radius: 20%;
+}
+.list{
+    width: 20%;
+}
+
+
+
+
