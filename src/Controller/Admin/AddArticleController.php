@@ -5,10 +5,11 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\UserRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,18 +19,18 @@ class AddArticleController extends AbstractController
     /**
      * @Route("/admin/articles", name="admin_article_List")
      */
-    public function articleList(ArticleRepository $articleRepository)
+    public function articleList(ArticleRepository $articleRepository,UserRepository $userRepository,CategoryRepository $categoryRepository)
     {
-        // je dois faire une requête SQL SELECT en bdd
-        // sur la table article
-        // La classe qui me permet de faire des requêtes SELECT est ArticleRepository
-        // donc je dois instancier cette classe
-        // pour ça, j'utilise l'autowire (je place la classe en argument du controleur,
-        // suivi de la variable dans laquelle je veux que sf m'instancie la classe
         $articles = $articleRepository->findAll();
+        $user = $userRepository->findAll();
+        $category = $categoryRepository->findAll();
+
 
         return $this->render('admin/Admin_Articles_List.html.twig', [
-            'articles' => $articles
+            'articles' => $articles,
+            'user' => $user,
+            'categories' => $category
+
         ]);
     }
 
@@ -80,10 +81,26 @@ class AddArticleController extends AbstractController
     }
 
     /**
+     * @Route("admin/search", name="search")
+     */
+    public function search(ArticleRepository $articleRepository, Request $request)
+    {
+        $term = $request->query->get('q');
+
+        $articles = $articleRepository->search($term);
+
+        return $this->render('Admin/Adminarticle_search.html.twig', [
+            'articles' => $articles,
+            'term' => $term
+        ]);
+    }
+
+    /**
      * @Route("admin/articles/update/{id}", name="admin_article_Update")
      */
-    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request)
+    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request,  FileUploader $fileUploader)
     {
+
         // pour l'insert : $article = new Article();
         $article = $articleRepository->find($id);
 
@@ -98,6 +115,11 @@ class AddArticleController extends AbstractController
         // créé en bdd
         if ($articleForm->isSubmitted() && $articleForm->isValid()) {
 
+            $brochureFile = $articleForm->get('brochure')->getData();
+            if ($brochureFile) {
+                $brochureFileName = $fileUploader->upload($brochureFile);
+                $article->setBrochureFilename($brochureFileName);
+            }
             $entityManager->persist($article);
             $entityManager->flush();
 

@@ -48,8 +48,6 @@ class Category
         $this->title = $title;
     }
 
-
-
     /**
      * @return mixed
      */

@@ -1,0 +1,20 @@
+{% extends '/Front/base.html.twig' %}
+
+{% block main %}
+    <div class="totalspecial">
+        <article class="text-center d-flex align-items-center">
+            <div>
+            <h1>{{ article.title }}</h1>
+            <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid plats" alt="..." />
+            </div>
+            <div class="mx-4">
+            <h2>Description</h2>
+            <p>{{ article.content }}</p>
+            <h2>Categorie</h2>
+            <p>{{ article.category.title }}</p>
+            <h4>{{ article.price }}€</h4>
+            </div>
+        </article>
+    </div>
+
+{% endblock main %}

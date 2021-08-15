@@ -1,0 +1,20 @@
+{% extends 'Front/base.html.twig' %}
+
+{% block metaTitle %}
+    Categories
+{% endblock metaTitle %}
+
+{% block main %}
+    <div class="total">
+        <div class="d-flex align-items-center totalbas ">
+            {% for categorie in category %}
+                <article class="category_article">
+                    <div>
+                        <img class="img-fluid" src="img/ramen1.jpeg">
+                    </div>
+                    <a class="nodec" href="{{ path('categorie_show', {'id': categorie.id}) }}"><h1 class="category_title">{{ categorie.title }}</h1></a>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock main %}

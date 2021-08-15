@@ -1,0 +1,19 @@
+{% extends '/Front/base.html.twig' %}
+
+{% block main %}
+    <h1>Il y a {{ articles | length }} articles correspondant à : "{{ term }}"</h1>
+    <div class="articles-container">
+        {% for article in articles %}
+            <div class="total">
+                <article class="article totalbas">
+                    <h2>{{ article.title | upper }}</h2>
+                    <p>{{ article.content }}</p>
+                    <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid plats" alt="..." />
+                    <a class="btn-art" href="{{ path('admin_article_Update', {'id': article.id }) }}">Mettre à jour</a>
+                    <a class="btn-art" href="{{ path('admin_article_Delete', {'id': article.id }) }}">Supprimer</a>
+                    <a class="btn-art" href="{{ path('article_Show', {'id': article.id }) }}">Voir plus</a>
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,8 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'Front/base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
 {% block main %}
+
+    {% for message in app.flashes('success') %}
+    <div class="flash-success">
+        {{ message }}
+    </div>
+    {% endfor %}
 <div class="login">
     <form class="login-form" method="post">
         {% if error %}

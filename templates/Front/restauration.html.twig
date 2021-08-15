@@ -1,0 +1,16 @@
+{% extends 'Front/base.html.twig' %}
+{% block main %}
+    {% for article in categorie.article %}
+        {% if article.published %}
+            <div class="total d-flex mx-3 my-5">
+                <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid plats" alt="..." />
+                <div class="mx-3 my-5">
+                    <h2 class="plats">{{ article.title }}</h2>
+                    <p class="content">{{ article.content }}</p>
+                    <p class="plats">{{ article.price }}€</p>
+                    <a class="btn-art" href="{{ path('article_Show', {'id': article.id }) }}">Voir plus</a>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock main %}

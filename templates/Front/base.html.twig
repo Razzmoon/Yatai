@@ -17,19 +17,30 @@
         <div id="connexion">
             {% if app.user %}
                 <div class="d-flex align-items-center ">
-                    <a class="mx-1 logout" href="{{ path('app_logout') }}">déconnection</a>
+                    <a class="mx-1 logout nodec" href="{{ path('app_logout') }}">déconnection</a>
                 </div>
             {% else %}
                 <a href="{{ path('app_login')}}">
                     <img src="{{ asset("img/connection.png") }}" class="img-fluid" alt="connexion"/>
                 </a>
             {% endif %}
+            {% if app.user %}
+                {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                    <div class="admin-menu mx-1">
+                        <a class="admin-article-list nodec" href="{{ path ('admin_article_List') }}">Liste des Articles</a>
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
+
         <a href="{{ path('home') }}" class="titre1">
             <h1 class="Yatai">
                 YATAI
             </h1>
         </a>
+        <div id="panier">
+            <img src="{{ asset("img/wicker-basket.png") }}" class="img-fluid" alt="" />
+        </div>
     </nav>
 {% block header %}
 {% endblock header %}

@@ -23,7 +23,7 @@ class Article
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", length=500)
      */
     private $content;
 
@@ -63,7 +63,6 @@ class Article
 
         return $this;
     }
-
 
     public function getId(): ?int
     {
@@ -145,6 +144,5 @@ class Article
     {
         $this->category = $category;
     }
-
 
 }

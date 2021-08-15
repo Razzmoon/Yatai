@@ -1,4 +1,4 @@
-{% extends 'admin/admin_base.html.twig' %}
+{% extends 'Front/base.html.twig' %}
 
 {% block metaTitle %}
     Liste des articles
@@ -7,17 +7,32 @@
 
 {% block main %}
     <div class="articles-container">
-        {% for article in articles %}
-                <article class="article">
+        <div class="my-5">
+            <form action="{{ path('search') }}"method="get" >
+                <input type="text" name="q" placeholder="rechercher">
+                <input type="submit" value="rechercher">
+            </form>
+        </div>
+        <a class="btn-art abso" href="{{ path('article_insert') }}">Ajouter un article</a>
+        {% for category in categories %}
+            <h2>{{ category.title }}</h2>
+            <h4>Il y a {{ category.article | length }} articles dans cette categorie</h4>
+            {% for article in category.article %}
+                <article class="admin-list">
                     <h2>{{ article.title | upper }}</h2>
+                    <h3>Description</h3>
                     <p>{{ article.content }}</p>
-                    <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid list" alt="..." />
-                    <a href="{{ path('admin_article_Update', {'id': article.id }) }}">Mettre à jour (hardcodé)</a>
-                    <a href="{{ path('admin_article_Delete', {'id': article.id }) }}">Supprimer</a>
+                    <p>{{ article.price }}€</p>
+                    <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid icle" alt="..." />
+
+                    <a class="btn-art" href="{{ path('admin_article_Update', {'id': article.id }) }}">Mettre à jour</a>
+
+                    <a class="btn-art" href="{{ path('admin_article_Delete', {'id': article.id }) }}">Supprimer</a>
                 </article>
             <br>
+            {% endfor %}
         {% endfor %}
 
-        <a href="{{ path('article_insert') }}">Ajouter un article (hardcodé)</a>
+
     </div>
 {% endblock main %}

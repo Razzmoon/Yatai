@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'Front/base.html.twig' %}
 {% block metaTitle %}
     Yatai
 {% endblock metaTitle %}
@@ -65,11 +65,6 @@
             </button>
         </div>
     </div>
-    <div class="position-relative">
-        <button id="acheter" class="rounded-pill py-3 px-3 position-absolute">
-            Acheter Maintenant
-        </button>
-    </div>
 </header>
 {% endblock header %}
 {% block main %}
@@ -85,7 +80,7 @@
             px-0
           "
         >
-            <li class="col-2">Notre Vision</li>
+            <li class="col-2"><a class="list nodec" href={{ path('notreVision') }}> Notre Vision </a></li>
             <li class="col-2">Nos Plats</li>
             <li class="col-2">
                 <img
@@ -94,8 +89,8 @@
                         id="alt"
                 />
             </li>
-            <li class="col-2">Commande</li>
-            <li class="col-2">Info/Contact</li>
+            <li class="col-2"><a class="list nodec" href={{ path('categories') }}> Commande </a></li>
+            <li class="col-2"><a class="list nodec" href={{ path('InfoContact') }}> Info/Contact </a></li>
         </ul>
     </nav>
     <div class="w-75 row mx-auto">
@@ -104,12 +99,12 @@
                 <article class="mx-5 text-center">
                     {% if article.toparticle %}
                         <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid article" alt="..." />
-                        {{ article.title }}
                         <br>
-                        {{ article.content }}
-                        <br>
-                        {{ article.price }}€
-                {% endif %}
+                        <p class="articletop">{{ article.title }}</p>
+                        <p class="articletop">{{ article.content }}</p>
+                        <p class="articletop">{{ article.price }}€</p>
+                        <a class="btn-art" href="{{ path('article_Show', {'id': article.id }) }}">Voir plus</a>
+                    {% endif %}
                 </article>
             {% endfor %}
         </div>
