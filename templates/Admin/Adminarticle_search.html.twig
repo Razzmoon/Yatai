@@ -5,13 +5,16 @@
     <div class="articles-container">
         {% for article in articles %}
             <div class="total">
-                <article class="article totalbas">
-                    <h2>{{ article.title | upper }}</h2>
-                    <p>{{ article.content }}</p>
+                <article class="article totalbas d-flex align-items-center">
                     <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid plats" alt="..." />
-                    <a class="btn-art" href="{{ path('admin_article_Update', {'id': article.id }) }}">Mettre à jour</a>
-                    <a class="btn-art" href="{{ path('admin_article_Delete', {'id': article.id }) }}">Supprimer</a>
-                    <a class="btn-art" href="{{ path('article_Show', {'id': article.id }) }}">Voir plus</a>
+                    <div class="mx-3">
+                        <h2>{{ article.title | upper }}</h2>
+                        <h3>Description</h3>
+                        <p>{{ article.content }}</p>
+                        <a class="btn-art" href="{{ path('admin_article_Update', {'id': article.id }) }}">Mettre à jour</a>
+                        <a class="btn-art" href="{{ path('admin_article_Delete', {'id': article.id }) }}">Supprimer</a>
+                        <a class="btn-art" href="{{ path('article_Show', {'id': article.id }) }}">Voir plus</a>
+                    </div>
                 </article>
             </div>
         {% endfor %}

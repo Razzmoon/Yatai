@@ -22,10 +22,12 @@ class Category
      */
     private $title;
 
+    //relation avec Article
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category")
      */
     private $article;
+
 
     public function getId(): ?int
     {

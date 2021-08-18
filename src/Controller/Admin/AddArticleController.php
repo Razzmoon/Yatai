@@ -39,8 +39,10 @@ class AddArticleController extends AbstractController
      */
     public function insertArticle(Request $request,ArticleRepository $articleRepository, EntityManagerInterface $entityManager, FileUploader $fileUploader)
     {
+        //$articles prend la valeur de $articlerepository qui va utiliser la method find all de article repository
         $articles = $articleRepository->findAll();
 
+        //$articles crée un nouvelle article
         $article = new Article();
 
         //On genere le formulaire en utilisant le gabarit + une instance de l'entité article
@@ -50,8 +52,9 @@ class AddArticleController extends AbstractController
         $articleForm->handleRequest($request);
 
         //si le form a été poster et qu'il et valide (que tous les champ obligatoire son bien rempli)
-        //alors on enregistre l'article en bdd=
+        //alors on enregistre l'article en bdd
         if ($articleForm->isSubmitted()&&$articleForm->isValid()){
+
 
             $brochureFile = $articleForm->get('brochure')->getData();
             if ($brochureFile) {
@@ -59,7 +62,7 @@ class AddArticleController extends AbstractController
                 $article->setBrochureFilename($brochureFileName);
             }
 
-            // permet de stocker en session un message flash, dans le but de l'afficher
+            // permet de stocker en session un message flash, dans le but de l'affic![](../../../../../../../../Users/johanrobert/Desktop/photo yatai/Ramen Tokotsu.png)her
             // sur la page suivante
             $this->addFlash(
                 'success',

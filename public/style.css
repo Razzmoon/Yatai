@@ -3,6 +3,10 @@
     margin: 0;
     padding: 0;
 }
+
+body{
+    marign: 5px;
+}
 @font-face {
     font-family: "yatai";
     src: url(font/tempus-sans-itc.ttf);
@@ -36,9 +40,17 @@ li {
 }
 .totalbas{
     width: 100%;
-
 }
-
+.login{
+    width: 60%;
+    height: calc(100vh - 200px);
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.login-form{
+    width:100%;
+}
 /*articleShow*/
 .totalspecial{
     width: 60%;
@@ -114,7 +126,7 @@ footer {
 }
 
 
-/*Login*/
+/*Flash*/
 .flash-success {
     text-align: center;
     padding-top: 15px;
@@ -133,22 +145,34 @@ footer {
 .articletop{
     font-family: cream;
 }
-.icle{
-    border-radius: 10px;
+.imgtop{
+    width: 250px;
+    height: 200px;
+}
+.imgtop img{
+    width: 100%;
+    height: 100%;
+}
+.imgadmin{
+    width: 250px;
+    height: 200px;
+}
+.imgadmin img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .admin-list{
-    width: 30%;
     margin-bottom: 50px;
     font-family: cream;
-    margin: 30px;
 }
+
 .btn-art{
     background-color: #9f1300;
     text-decoration: none;
     color: white;
     padding: 10px;
     border-radius: 10px;
-    margin: 20px;
 }
 #article_content{
     height: 170px!important;
@@ -160,7 +184,7 @@ footer {
 .abso{
     position: absolute;
     top:15%;
-    left:48.50%;
+    left:50%;
     transform: translate(-48.50%);
 }
 

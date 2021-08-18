@@ -19,25 +19,17 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    // fonction qui recupere la variable term pour fair une recherche
-    public function searchByTerm($term)
-    {
-        //objet qui permet de crée des requete SQL pour une table donné
+    public function limitArticleHomePage(){
         $queryBuilder = $this->createQueryBuilder('article');
 
-        // requete sql mais en language PHP qui permet d'aller dans article et de chercher ce qu'on veux en fonction de term
+        //affiche seulement 3 top article
         $query = $queryBuilder
             ->select('article')
-
-            ->where('article.content LIKE :term')
-            ->setParameter('term', '%'.$term.'%')
-
-            //transforme la sorte de requette sql en vrai requette sql
+            ->setMaxResults(3)
             ->getQuery();
-
+        //transforme la requete sql php en requete sql
         return $query->getResult();
     }
-
 
     //fonction pour rechercher par rapport a la catégorie//tag//article
     public function search($term)

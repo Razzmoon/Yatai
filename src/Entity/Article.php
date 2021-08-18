@@ -47,6 +47,7 @@ class Article
      */
     private $price;
 
+    //relation avec category
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="article")
      */

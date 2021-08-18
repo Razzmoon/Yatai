@@ -16,7 +16,7 @@ class HomePageController extends AbstractController
     public function home(ArticleRepository $articleRepository,UserRepository $userRepository)
     {
         $user = $userRepository->findAll();
-        $articles = $articleRepository->findAll();
+        $articles = $articleRepository->limitArticleHomePage();
         return $this->render('Front/home.html.twig', [
             'articles' => $articles,
             'user' => $user
