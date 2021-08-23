@@ -8,6 +8,7 @@
 {% block main %}
     <div class="articles-container">
         <div class="my-5">
+            {# effectue la function search avec la method get #}
             <form class="mx-3" action="{{ path('search') }}"method="get" >
                 <input type="text" name="q" placeholder="rechercher">
                 <input type="submit" value="rechercher">
@@ -25,7 +26,7 @@
 
 
         {% for article in category.article %}
-            <article class="admin-list col-3">
+            <article class="admin-list col-lg-3 col-12 mx-auto">
                 <h4>{{ article.title | upper }}</h4>
                 <span>{{ article.price }}€</span>
                 <div class="imgadmin">

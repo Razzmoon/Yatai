@@ -5,8 +5,29 @@
 {% block header %}
 <body>
 <header>
+
+    <div class="d-lg-none">
+        <div id="menuToggle">
+
+            <input type="checkbox" />
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href={{ path('categories') }}><li> Commande</li></a>
+                <a href={{ path('notreVision') }}><li>Notre Vision</li></a>
+                <a href="#"><li>Nos plats</li></a>
+                <a href={{ path('InfoContact') }}><li>Info/Contact</li></a>
+            </ul>
+        </div>
+    </div>
+    <div class="d-sm-block d-lg-none">
+        <img src="{{ asset("img/ramen1.jpeg") }}"class="imgfluid w-100 my-5" alt="ramen">
+    </div>
     <!--Caroussel-->
-    <div class="my-5 w-90 mx-auto">
+    <div class="my-5 d-sm-none d-md-none d-none d-lg-block">
         <div
                 id="carousel"
                 class="carousel slide"
@@ -36,13 +57,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset("img/Stand.png") }}" class="d-block w-100" alt="Stand" />
+                    <img src="{{ asset("img/Stand.png") }}" class="d-block imgfluid w-100" alt="Stand" />
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset("img/Yatai-Fukuoka-9.jpeg") }}" class="d-block w-100" alt="imag restaurant" />
+                    <img src="{{ asset("img/Yatai-Fukuoka-9.jpeg") }}" class="d-block imgfluid w-100" alt="imag restaurant" />
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset("img/ramen1.jpeg") }}" class="d-block w-100" alt="plat de ramen" />
+                    <img src="{{ asset("img/ramen1.jpeg") }}" class="d-block imgfluid w-100" alt="plat de ramen" />
                 </div>
             </div>
             <button
@@ -69,7 +90,8 @@
 {% endblock header %}
 {% block main %}
 <main>
-    <nav class="w-75 mx-auto rounded-pill">
+
+    <nav class="w-75 mx-auto rounded-pill d-lg-block d-none">
         <ul
                 class="
             row
@@ -81,12 +103,12 @@
           "
         >
             <li class="col-2"><a class="list nodec" href={{ path('notreVision') }}> Notre Vision </a></li>
-            <li class="col-2">Nos Plats</li>
+            <li class="col-2 list">Nos Plats</li>
             <li class="col-2">
                 <img
                         src="{{ asset("img/LOGO.png") }}"
                         class="img-fluid rounded-circle logo"
-                        id="alt"
+                        alt="logo"
                 />
             </li>
             <li class="col-2"><a class="list nodec" href={{ path('categories') }}> Commande </a></li>
@@ -94,12 +116,12 @@
         </ul>
     </nav>
     <div class="mx-auto">
-        <div class="d-flex justify-content-center my-4">
+        <div class="d-flex justify-content-center my-4 row mx-0 ">
             {% for article in articles %}
                 {% if article.toparticle %}
-                <article class="mx-5 text-center">
-                        <div class="imgtop">
-                        <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="article" alt="..." />
+                <article class="text-center col-lg-4 col-sm-12 py-sm-3">
+                        <div class="imgtop mx-auto">
+                        <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="article" alt="top article" />
                         </div>
                         <br>
                         <p class="articletop">{{ article.title }}</p>

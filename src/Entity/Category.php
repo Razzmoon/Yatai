@@ -22,7 +22,7 @@ class Category
      */
     private $title;
 
-    //relation avec Article
+    //J'indique a Doctrine que dans une category il peut avoir plusieur article
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category")
      */

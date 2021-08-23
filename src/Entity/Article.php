@@ -47,7 +47,7 @@ class Article
      */
     private $price;
 
-    //relation avec category
+    //J'indique a doctrine que 1 article peut etre dans une category
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="article")
      */

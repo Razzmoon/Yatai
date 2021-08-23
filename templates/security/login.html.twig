@@ -9,8 +9,8 @@
         {{ message }}
     </div>
     {% endfor %}
-<div class="login">
-    <form class="login-form" method="post">
+<div class="total">
+    <form class="totalbas" method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}

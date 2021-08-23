@@ -5,13 +5,10 @@
 {% endblock metaTitle %}
 
 {% block main %}
-    <div class="total">
-        <div class="d-flex align-items-center totalbas ">
+    <div class="totalcate">
+        <div class="d-lg-flex align-items-center totalbas w-50 mx-auto ">
             {% for categorie in category %}
-                <article class="category_article">
-                    <div>
-                        <img class="img-fluid" src="img/ramen1.jpeg">
-                    </div>
+                <article class="category_article mx-auto">
                     <a class="nodec" href="{{ path('categorie_show', {'id': categorie.id}) }}"><h1 class="category_title">{{ categorie.title }}</h1></a>
                 </article>
             {% endfor %}

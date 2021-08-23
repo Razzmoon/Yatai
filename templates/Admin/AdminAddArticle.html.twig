@@ -1,14 +1,16 @@
 {% extends 'Front/base.html.twig' %}
 
 {% block main %}
+    {# J'affiche les message en flash #}
     {% for message in app.flashes('success') %}
 <div class="flash-success">
     {{ message }}
 </div>
     {% endfor %}
 
-<div class="login">
-    <div class="form login-form">
+<div class="total">
+    <div class="form totalbas">
+        {# Formulaire en bootstrap #}
         {% form_theme articleForm 'bootstrap_4_layout.html.twig' %}
         {{ form(articleForm) }}
         </div>

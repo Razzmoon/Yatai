@@ -13,7 +13,7 @@
 <body>
 
 <header class="header">
-    <nav class="d-flex justify-content-between align-items-center">
+    <nav class="d-flex justify-content-between align-items-center ">
         <div id="connexion">
             {% if app.user %}
                 <div class="d-flex align-items-center ">
@@ -42,6 +42,7 @@
             <img src="{{ asset("img/wicker-basket.png") }}" class="img-fluid" alt="" />
         </div>
     </nav>
+
 {% block header %}
 {% endblock header %}
 

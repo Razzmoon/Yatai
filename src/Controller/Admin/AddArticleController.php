@@ -37,12 +37,14 @@ class AddArticleController extends AbstractController
     /**
      * @Route("admin/insert/article", name="article_insert")
      */
-    public function insertArticle(Request $request,ArticleRepository $articleRepository, EntityManagerInterface $entityManager, FileUploader $fileUploader)
+    public function insertArticle(Request $request,ArticleRepository $articleRepository,
+    EntityManagerInterface $entityManager, FileUploader $fileUploader)
     {
-        //$articles prend la valeur de $articlerepository qui va utiliser la method find all de article repository
+        //$articles prend la valeur de $articlerepository qui va utiliser
+        // la method find all de article repository
         $articles = $articleRepository->findAll();
 
-        //$articles crée un nouvelle article
+        //Je crée une nouvelle entité que je met dans une variable
         $article = new Article();
 
         //On genere le formulaire en utilisant le gabarit + une instance de l'entité article
@@ -62,19 +64,23 @@ class AddArticleController extends AbstractController
                 $article->setBrochureFilename($brochureFileName);
             }
 
-            // permet de stocker en session un message flash, dans le but de l'affic![](../../../../../../../../Users/johanrobert/Desktop/photo yatai/Ramen Tokotsu.png)her
+            // permet de stocker en session un message flash, dans le but de l'afficher
             // sur la page suivante
             $this->addFlash(
                 'success',
                 'L\'Article '. $article->getTitle().' a bien été créé !'
             );
 
+            //je mets l'entité manager pour pre-sauvegarder mon entité article
             $entityManager->persist($article);
+            //j'envoie a la base de donnée
             $entityManager->flush();
-            return $this->redirectToRoute('article_insert');
+            //je renvoie l'utilisateur a sur la page admin article list quand le formulaire est rempli
+            return $this->redirectToRoute('admin_article_List');
 
         }
 
+        //Affiche mon formlaire
         return $this->render('Admin/AdminAddArticle.html.twig', [
             'articleForm' => $articleForm->createView(),
             'articles' => $articles
@@ -88,10 +94,14 @@ class AddArticleController extends AbstractController
      */
     public function search(ArticleRepository $articleRepository, Request $request)
     {
+        //ce qui sera rentrer par l'utilisateur va dans la barre de recherche en utilisant le
+        //paramétre request
         $term = $request->query->get('q');
 
+        //la variable article va utiliser la function search de articleRepository
         $articles = $articleRepository->search($term);
 
+        //redirige vers la route admin article search
         return $this->render('Admin/Adminarticle_search.html.twig', [
             'articles' => $articles,
             'term' => $term
