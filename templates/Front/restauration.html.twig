@@ -3,13 +3,13 @@
     <div class="row mx-0 totalrestau">
     {% for article in categorie.article %}
         {% if article.published %}
-            <article class="admin-list col-lg-3 col-12 mx-auto totalbas">
+            <article class="admin-list col-lg-3 col-12  mx-auto totalbas">
                 <h4 class="text-left">{{ article.title | upper }}</h4>
                 <span>{{ article.price }}€</span>
                     <div class="imgadmin">
                         <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid article" alt="..." />
                     </div>
-                <a class="btn-art " href="{{ path('article_Show', {'id': article.id }) }}">Voir plus</a>
+                <a class="btn-art" href="{{ path('article_Show', {'id': article.id }) }}">Voir plus</a>
             </article>
         {% endif %}
     {% endfor %}

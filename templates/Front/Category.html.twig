@@ -6,7 +6,7 @@
 
 {% block main %}
     <div class="totalcate">
-        <div class="d-lg-flex align-items-center totalbas w-50 mx-auto ">
+        <div class="d-lg-flex align-items-center totalbas w-75 mx-auto ">
             {% for categorie in category %}
                 <article class="category_article mx-auto">
                     <a class="nodec" href="{{ path('categorie_show', {'id': categorie.id}) }}"><h1 class="category_title">{{ categorie.title }}</h1></a>

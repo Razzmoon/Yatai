@@ -29,7 +29,7 @@ class ArticleType extends AbstractType
                 // je lui indique qu'il va resevoir un fichier de type file
             ->add('brochure', FileType::class, [
                 'label' => 'Brochure',
-                //je lui indique qu'il ne doit pas s'occuper du deplacement du fichier
+                //non mappé signifie que ce champ n'est associé à aucune propriété d'entité
                 'mapped' => false,
             ])
             //et ici le bouton submit pour envoyer le formulaire

@@ -8,14 +8,19 @@
 {% block main %}
     <div class="articles-container">
         <div class="my-5">
-            {# effectue la function search avec la method get #}
+            {# L'input remplie la variable term #}
             <form class="mx-3" action="{{ path('search') }}"method="get" >
                 <input type="text" name="q" placeholder="rechercher">
                 <input type="submit" value="rechercher">
             </form>
         </div>
     </div>
-
+    {# J'affiche les message en flash #}
+    {% for message in app.flashes('success') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
         <a class="btn-art abso " href="{{ path('article_insert') }}">Ajouter un article</a>
     <div class="row mx-1">
     {% for category in categories %}

@@ -5,26 +5,26 @@
 {% block header %}
 <body>
 <header>
-
     <div class="d-lg-none">
-        <div id="menuToggle">
+        <div id="side-bar">
+            <div class="toggle-btn" id="btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-            <input type="checkbox" />
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-            <ul id="menu">
-                <a href={{ path('categories') }}><li> Commande</li></a>
-                <a href={{ path('notreVision') }}><li>Notre Vision</li></a>
-                <a href="#"><li>Nos plats</li></a>
-                <a href={{ path('InfoContact') }}><li>Info/Contact</li></a>
+            <ul class="list-menu">
+                <li><a class="list nodec" href={{ path('notreVision') }}>Notre Vision</a></li>
+                <li>Épiceries</li>
+                <li><a class="list nodec" href={{ path('categories') }}>Commande</a></li>
+                <li><a class="list nodec" href={{ path('InfoContact') }}>Info/Contact</a></li>
             </ul>
         </div>
     </div>
+
+    </div>
     <div class="d-sm-block d-lg-none">
-        <img src="{{ asset("img/ramen1.jpeg") }}"class="imgfluid w-100 my-5" alt="ramen">
+        <img src="{{ asset("img/ramen1.jpeg") }}" class="imgfluid w-100 my-5" alt="ramen">
     </div>
     <!--Caroussel-->
     <div class="my-5 d-sm-none d-md-none d-none d-lg-block">
@@ -103,7 +103,7 @@
           "
         >
             <li class="col-2"><a class="list nodec" href={{ path('notreVision') }}> Notre Vision </a></li>
-            <li class="col-2 list">Nos Plats</li>
+            <li class="col-2 list">Épiceries</li>
             <li class="col-2">
                 <img
                         src="{{ asset("img/LOGO.png") }}"
@@ -119,7 +119,7 @@
         <div class="d-flex justify-content-center my-4 row mx-0 ">
             {% for article in articles %}
                 {% if article.toparticle %}
-                <article class="text-center col-lg-4 col-sm-12 py-sm-3">
+                <article class="text-center col-lg-4 col-sm-12 py-4">
                         <div class="imgtop mx-auto">
                         <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="article" alt="top article" />
                         </div>
@@ -133,6 +133,7 @@
         </div>
     </div>
 </main>
+<script src="index.js"></script>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"

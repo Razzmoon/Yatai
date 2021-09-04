@@ -1,13 +1,6 @@
 {% extends 'Front/base.html.twig' %}
 
 {% block main %}
-    {# J'affiche les message en flash #}
-    {% for message in app.flashes('success') %}
-<div class="flash-success">
-    {{ message }}
-</div>
-    {% endfor %}
-
 <div class="total">
     <div class="form totalbas">
         {# Formulaire en bootstrap #}

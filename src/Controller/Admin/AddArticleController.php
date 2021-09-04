@@ -9,6 +9,7 @@ use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,10 +41,6 @@ class AddArticleController extends AbstractController
     public function insertArticle(Request $request,ArticleRepository $articleRepository,
     EntityManagerInterface $entityManager, FileUploader $fileUploader)
     {
-        //$articles prend la valeur de $articlerepository qui va utiliser
-        // la method find all de article repository
-        $articles = $articleRepository->findAll();
-
         //Je crée une nouvelle entité que je met dans une variable
         $article = new Article();
 
@@ -57,10 +54,14 @@ class AddArticleController extends AbstractController
         //alors on enregistre l'article en bdd
         if ($articleForm->isSubmitted()&&$articleForm->isValid()){
 
-
+            //je crée une variable brochureFile qui va récupérer
+            //les fichier envoyer dans le champ brochure de mon formulaire
             $brochureFile = $articleForm->get('brochure')->getData();
+            //Si le fichier existe on récupère son nom et on upload le fichier avec la method du meme nom
             if ($brochureFile) {
                 $brochureFileName = $fileUploader->upload($brochureFile);
+                //le champ brochure file de l'entité article et rempli
+                // par les données dans la variable brochure file names
                 $article->setBrochureFilename($brochureFileName);
             }
 
@@ -83,7 +84,6 @@ class AddArticleController extends AbstractController
         //Affiche mon formlaire
         return $this->render('Admin/AdminAddArticle.html.twig', [
             'articleForm' => $articleForm->createView(),
-            'articles' => $articles
 
 
         ]);
@@ -111,10 +111,12 @@ class AddArticleController extends AbstractController
     /**
      * @Route("admin/articles/update/{id}", name="admin_article_Update")
      */
-    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request,  FileUploader $fileUploader)
+    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager,
+    Request $request,  FileUploader $fileUploader)
     {
 
-        // pour l'insert : $article = new Article();
+        // grace a la method find de article repository
+        // je vais chercher l'article dont l'id correspond a l'article que je veux modifier
         $article = $articleRepository->find($id);
 
         // on génère le formulaire en utilisant le gabarit + une instance de l'entité Article
@@ -128,17 +130,27 @@ class AddArticleController extends AbstractController
         // créé en bdd
         if ($articleForm->isSubmitted() && $articleForm->isValid()) {
 
+            //je crée une variable brochureFile qui va récupérer
+            //les fichier envoyer dans le champ brochure de mon formulaire
             $brochureFile = $articleForm->get('brochure')->getData();
+            //Si le fichier existe on récupère son nom et on upload le fichier avec la method du meme nom
             if ($brochureFile) {
                 $brochureFileName = $fileUploader->upload($brochureFile);
+                //le champ brochure file de l'entité article et rempli
+                // par les données dans la variable brochure file names
                 $article->setBrochureFilename($brochureFileName);
             }
+            // permet de stocker en session un message flash, dans le but de l'afficher
+            // sur la page suivante
+            $this->addFlash(
+                'success',
+                'L\'Article '. $article->getTitle().' a bien été modifié !'
+            );
             $entityManager->persist($article);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_article_List');
         }
-
 
         return $this->render('Admin/AdminAddArticle.html.twig', [
             'articleForm' => $articleForm->createView()
@@ -147,6 +159,7 @@ class AddArticleController extends AbstractController
 
     /**
      * @Route("/article/delete/{id}",name="admin_article_Delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteArticle($id,ArticleRepository $articleRepository,EntityManagerInterface $entityManager)
     {

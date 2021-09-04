@@ -2,17 +2,20 @@
 
 {% block main %}
     <h1>Il y a {{ articles | length }} articles correspondant à : "{{ term }}"</h1>
-    <div class="articles-container">
+    <div class="articles-container w-75 ">
         {% for article in articles %}
+            <br>
             <div class="total">
-                <article class="article totalbas d-flex align-items-center">
-                    <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid plats" alt="..." />
-                    <div class="mx-3">
+                <article class="article totalbas d-flex row">
+                    <img src="{{ asset("uploads/brochures/"~article.brochureFilename) }}" class="img-fluid plats col-sm-12 col-lg-6" alt="..." />
+                    <div class="mx-3 col-sm-12">
                         <h2>{{ article.title | upper }}</h2>
                         <h3>Description</h3>
                         <p>{{ article.content }}</p>
                         <a class="btn-art" href="{{ path('admin_article_Update', {'id': article.id }) }}">Mettre à jour</a>
                         <a class="btn-art" href="{{ path('admin_article_Delete', {'id': article.id }) }}">Supprimer</a>
+                        <br>
+                        <br>
                         <a class="btn-art" href="{{ path('article_Show', {'id': article.id }) }}">Voir plus</a>
                     </div>
                 </article>

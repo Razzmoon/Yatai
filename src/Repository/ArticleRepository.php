@@ -20,14 +20,18 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     public function limitArticleHomePage(){
+        //je fais appel a mon entité article
         $queryBuilder = $this->createQueryBuilder('article');
 
-        //affiche seulement 3 top article
+        //je met ma variable queryBuilder dans une variable query
         $query = $queryBuilder
+            //je select l'entité article
             ->select('article')
+            //je set le max result a 3
             ->setMaxResults(3)
+            //getquery() fais la requete
             ->getQuery();
-        //transforme la requete sql php en requete sql
+        //return $query renvoi le resultat de la requete
         return $query->getResult();
     }
 
